@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Astronomer\'s Clock</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="dateUnits"><b><i>DATE</i></b></string>
+    <string name="mountainTimeUnits"><b><i>MOUNTAIN TIME</i></b></string>
+    <string name="localSiderealTimeUnits"><b><i>LOCAL SIDEREAL TIME</i></b></string>
+    <string name="universalTimeUnits"><b><i>UNIVERSAL TIME</i></b></string>
+    <string name="localSolarTimeUnits"><b><i>LOCAL SOLAR TIME</i></b></string>
+    <string name="universalDateTimeUnits"><b><i>UNIVERSAL DATE</i></b></string>
+
 </resources>
