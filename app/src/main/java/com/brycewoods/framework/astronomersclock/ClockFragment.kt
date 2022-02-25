@@ -48,4 +48,9 @@ class ClockFragment : Fragment() {
         clockTime?.textSize = clockSize
         clockUnits?.textSize = unitSize
     }
+
+    fun setDefaultText() {
+        clockTime?.text = "00:00:00"
+        clockUnits?.text = "Units"
+    }
 }
