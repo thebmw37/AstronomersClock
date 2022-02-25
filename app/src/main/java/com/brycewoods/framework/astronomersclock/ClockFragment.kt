@@ -30,5 +30,5 @@ class ClockFragment : Fragment() {
     fun update() {
         clockTime?.text = (Integer.parseInt(clockTime?.text as String) + 1).toString()
     }
-    
+
 }
