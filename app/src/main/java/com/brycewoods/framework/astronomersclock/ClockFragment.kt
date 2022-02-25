@@ -1,11 +1,13 @@
 package com.brycewoods.framework.astronomersclock
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -15,6 +17,7 @@ import android.widget.TextView
 class ClockFragment : Fragment() {
 
     private var clockTime: TextView? = null
+    private var clockUnits: TextView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -25,10 +28,24 @@ class ClockFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         clockTime = view.findViewById<TextView>(R.id.clockTime)
+        clockUnits = view.findViewById<TextView>(R.id.clockUnits)
     }
 
     fun update() {
-        clockTime?.text = (Integer.parseInt(clockTime?.text as String) + 1).toString()
+        clockTime?.text = getLocalTime()
     }
 
+    fun getLocalTime(): String? {
+        return getDateTime()?.split(" ")?.get(1)
+    }
+
+    fun getDateTime(): String? {
+        val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss")
+        return sdf.format(Calendar.getInstance().time)
+    }
+
+    fun setTextSize(clockSize: Float, unitSize: Float) {
+        clockTime?.textSize = clockSize
+        clockUnits?.textSize = unitSize
+    }
 }
