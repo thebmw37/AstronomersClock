@@ -18,6 +18,7 @@ class ClockFragment : Fragment() {
 
     private var clockTime: TextView? = null
     private var clockUnits: TextView? = null
+    private var clockType: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -31,17 +32,58 @@ class ClockFragment : Fragment() {
         clockUnits = view.findViewById<TextView>(R.id.clockUnits)
     }
 
-    fun update() {
-        clockTime?.text = getLocalTime()
+    fun setClockType(type: String?) {
+        clockType = type
+
+        when(clockType) {
+            "Date" -> clockUnits?.text = "DATE"
+            "localTime" -> clockUnits?.text = "MOUNTAIN TIME"
+        }
     }
 
-    fun getLocalTime(): String? {
+    fun update() {
+        when(clockType) {
+            "Date" -> clockTime?.text = getDate()
+            "localTime" -> clockTime?.text = getLocalTime()
+        }
+    }
+
+    fun getDate(): String? {
+        val dateTime = getDateTime()
+        val dateTimeSplit = dateTime?.split("/")
+        val month = dateTimeSplit?.get(0)
+        val day = dateTimeSplit?.get(1)
+        val year = dateTimeSplit?.get(2)?.split(" ")?.get(0)
+
+        return convertMonthIntToString(month?.toInt()) + " " + day + ", " + year
+    }
+
+    private fun getLocalTime(): String? {
         return getDateTime()?.split(" ")?.get(1)
     }
 
-    fun getDateTime(): String? {
+    private fun getDateTime(): String? {
         val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss")
         return sdf.format(Calendar.getInstance().time)
+    }
+
+    private fun convertMonthIntToString(monthInt: Int?): String? {
+
+        return when(monthInt) {
+            1 -> "JAN"
+            2 -> "FEB"
+            3 -> "MAR"
+            4 -> "APR"
+            5 -> "MAY"
+            6 -> "JUN"
+            7 -> "JUL"
+            8 -> "AUG"
+            9 -> "SEP"
+            10 -> "OCT"
+            11 -> "NOV"
+            12 -> "DEC"
+            else -> null
+        }
     }
 
     fun setTextSize(clockSize: Float, unitSize: Float) {

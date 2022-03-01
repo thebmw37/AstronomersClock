@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         clock4 = supportFragmentManager.findFragmentById(R.id.fragment4) as ClockFragment
         clock5 = supportFragmentManager.findFragmentById(R.id.fragment5) as ClockFragment
 
-        clock1?.setDefaultText()
+        clock0?.setClockType("Date")
+        clock1?.setClockType("localTime")
         clock2?.setDefaultText()
         clock3?.setDefaultText()
         clock4?.setDefaultText()
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         runnable1 = Runnable {
             clock0!!.update()
+            clock1!!.update()
             runnable1?.let { handler1?.postDelayed(it, 10) }
         }
 
@@ -61,20 +63,20 @@ class MainActivity : AppCompatActivity() {
         super.onConfigurationChanged(newConfig)
 
         if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            clock0?.setTextSize(45F, 26F)
-            clock1?.setTextSize(45F, 26F)
-            clock2?.setTextSize(45F, 26F)
-            clock3?.setTextSize(45F, 26F)
-            clock4?.setTextSize(45F, 26F)
-            clock5?.setTextSize(45F, 26F)
+            clock0?.setTextSize(38F, 24F)
+            clock1?.setTextSize(38F, 24F)
+            clock2?.setTextSize(38F, 24F)
+            clock3?.setTextSize(38F, 24F)
+            clock4?.setTextSize(38F, 24F)
+            clock5?.setTextSize(38F, 24F)
         }
         else {
-            clock0?.setTextSize(30F, 22F)
-            clock1?.setTextSize(30F, 22F)
-            clock2?.setTextSize(30F, 22F)
-            clock3?.setTextSize(30F, 22F)
-            clock4?.setTextSize(30F, 22F)
-            clock5?.setTextSize(30F, 22F)
+            clock0?.setTextSize(22F, 18F)
+            clock1?.setTextSize(22F, 18F)
+            clock2?.setTextSize(22F, 18F)
+            clock3?.setTextSize(22F, 18F)
+            clock4?.setTextSize(22F, 18F)
+            clock5?.setTextSize(22F, 18F)
 
         }
     }
